@@ -1,21 +1,38 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
-export const Card = () => {
+export const Card = (props) => {
+  const dataArray = [];
+  const [data, setData] = useState({});
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    const result = await fetch("https://opentdb.com/api.php?amount=1");
+    const data = await result.json();
+    setData(data.results[0]);
+  };
+
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
+
   return (
     <Section>
       <div className="head-panel">
         <div className="question-number">1/10</div>
       </div>
-      <div className="category">Technology</div>
-      <div className="question">
-        What was the first product launched by Apple?
-      </div>
+      <div className="category">{data.category}</div>
+      <div className="question">{data.question}</div>
       <div className="answers">
-        <button>iPhone</button>
-        <button>iPad</button>
-        <button>Apple 1</button>
-        <button>iPod</button>
+        {data.incorrect_answers.map(
+          (answer) => 
+                <button>{answer}</button>
+            
+        )}
+        <button>{data.correct_answer}</button>
       </div>
     </Section>
   );
@@ -26,42 +43,50 @@ const Section = styled.div`
   flex-direction: column;
   background-color: white;
   width: 86%;
+  max-width: 420px;
   border-radius: 20px;
   padding: 1rem;
   box-sizing: border-box;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 10px 15px;
 
-  .question-number{
+  .question-number {
     font-size: 1rem;
     padding-bottom: 3rem;
   }
 
   .category {
     color: gray;
-    font-size: .9rem;
+    font-size: 0.9rem;
     padding-top: 1rem;
     text-align: center;
   }
 
-  .question{
+  .question {
     font-size: 1.4rem;
     font-weight: 500;
     text-align: center;
     color: black;
-    padding: .5rem 1rem 2rem 1rem;
+    padding: 0.5rem 1rem 2rem 1rem;
   }
 
-  .answers{
+  .answers {
     display: flex;
     flex-direction: column;
   }
 
-  .answers button{
+  .answers button {
     width: 100%;
-    padding: .8rem;
+    padding: 0.8rem;
     font-size: 1rem;
+    border-color: white;
     border-radius: 30px;
+    border-color: gray;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    box-shadow: none;
+    outline: white;
     margin-bottom: 1.2rem;
     background-color: transparent;
   }
-
 `;
