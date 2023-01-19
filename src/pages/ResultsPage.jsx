@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import { Logo } from "../components/Logo";
 import { Button } from "../components/Button";
+import { Results } from "../components/Results";
 
-export const HomePage = (props) => {
+export const ResultsPage = (props) => {
   return (
     <Page>
-      <Logo></Logo>
-      <Button onHandleClick={props.startGame} caption="Start playing" />
+      <Results />
+      <Button onHandleClick={props.startGame} caption="Continue playing" />
     </Page>
   );
 };

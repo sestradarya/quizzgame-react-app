@@ -2,36 +2,43 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 export const Card = (props) => {
-  const dataArray = [];
   const [data, setData] = useState({});
+  const [number, setNumber] = useState(0);
 
   useEffect(() => {
-    fetchData();
+    setNumber(0)
+    fetchData()
+    console.log("newCard");
   }, []);
+
+  useEffect(() => {
+    if(number === 11){
+        props.endGame()
+    }
+  }, [number])
 
   const fetchData = async () => {
     const result = await fetch("https://opentdb.com/api.php?amount=1");
     const data = await result.json();
     setData(data.results[0]);
+    if(data) setNumber((prev) => prev + 1);
   };
 
   useEffect(() => {
-    console.log(data);
+    
   }, [data]);
 
   return (
     <Section>
       <div className="head-panel">
-        <div className="question-number">1/10</div>
+        <div className="question-number">{number}/10</div>
       </div>
       <div className="category">{data.category}</div>
       <div className="question">{data.question}</div>
       <div className="answers">
-        {data.incorrect_answers.map(
-          (answer) => 
-                <button>{answer}</button>
-            
-        )}
+        {data.incorrect_answers?.map((answer) => {
+          return <button onClick={fetchData}>{answer}</button>;
+        })}
         <button>{data.correct_answer}</button>
       </div>
     </Section>

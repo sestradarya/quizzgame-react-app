@@ -2,12 +2,10 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Card } from "../components/Card";
 
-export const GamePage = () => {
-  const [count, setCount] = useState(0);
-
+export const GamePage = (props) => {
   return (
     <Page>
-      <Card />
+      <Card endGame = {props.endGame}/>
     </Page>
   );
 };
