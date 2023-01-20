@@ -47,7 +47,7 @@ export const Card = (props) => {
   const replaceEntities = (str) => {
     if (str) {
       return str.replaceAll("&quot;", '"').replaceAll('&#039;', "'")
-      .replaceAll("&ouml;", "ö");
+      .replaceAll("&ouml;", "ö").replaceAll("&amp;", "&").replaceAll("&eacute;", "É");
     }
   };
 

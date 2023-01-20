@@ -37,24 +37,29 @@ export const AnswerBtn = (props) => {
 };
 
 const Button = styled.button`
-  width: 100%;
+  width: 85%;
   padding: 0.8rem;
   font-size: 1rem;
   border-color: white;
   border-radius: 30px;
   border-color: gray;
-  border-width: 1px;
+  border-width: 2px;
   border-style: solid;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
   box-shadow: none;
   outline: white;
+  margin: 0 auto;
   margin-bottom: 1.2rem;
   background-color: transparent;
 
+  transition: all .3s;
+
   :hover {
-    background-color: #b8b8b8;
+    width: 95%;
+    border-color: #2E2D78;
+    font-size: 1.1rem;
   }
 
   :active {
