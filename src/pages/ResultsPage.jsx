@@ -6,7 +6,7 @@ import { Results } from "../components/Results";
 export const ResultsPage = (props) => {
   return (
     <Page>
-      <Results />
+      <Results result={props.result}/>
       <Button onHandleClick={props.startGame} caption="Continue playing" />
     </Page>
   );

@@ -1,32 +1,55 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { AnswerBtn } from "./AnswerBtn";
 
 export const Card = (props) => {
   const [data, setData] = useState({});
   const [number, setNumber] = useState(0);
 
   useEffect(() => {
-    setNumber(0)
-    fetchData()
+    setNumber(0);
+    fetchData();
     console.log("newCard");
   }, []);
 
   useEffect(() => {
-    if(number === 11){
-        props.endGame()
+    if (number === 11) {
+      props.endGame();
     }
-  }, [number])
+  }, [number]);
 
   const fetchData = async () => {
     const result = await fetch("https://opentdb.com/api.php?amount=1");
     const data = await result.json();
     setData(data.results[0]);
-    if(data) setNumber((prev) => prev + 1);
+    if (data) setNumber((prev) => prev + 1);
   };
 
   useEffect(() => {
-    
+    console.log(data);
   }, [data]);
+
+  const getQuestions = () => {
+    if (data.incorrect_answers) {
+      const arr = data.incorrect_answers.map((answer) => {
+        return { value: answer, isCorrect: false };
+      });
+      const randomNumber = Math.random() * 3;
+      arr.splice(randomNumber, 0, {
+        value: data.correct_answer,
+        isCorrect: true,
+      });
+      console.log(arr);
+      return arr;
+    }
+  };
+
+  const replaceEntities = (str) => {
+    if (str) {
+      return str.replaceAll("&quot;", '"').replaceAll('&#039;', "'")
+      .replaceAll("&ouml;", "ö");
+    }
+  };
 
   return (
     <Section>
@@ -34,12 +57,17 @@ export const Card = (props) => {
         <div className="question-number">{number}/10</div>
       </div>
       <div className="category">{data.category}</div>
-      <div className="question">{data.question}</div>
+      <div className="question">{replaceEntities(data.question)}</div>
       <div className="answers">
-        {data.incorrect_answers?.map((answer) => {
-          return <button onClick={fetchData}>{answer}</button>;
+        {getQuestions()?.map((answer) => {
+          return (
+            <AnswerBtn
+              value={replaceEntities(answer.value)}
+              onHandleClick={fetchData}
+              isCorrect={answer.isCorrect}
+            />
+          );
         })}
-        <button>{data.correct_answer}</button>
       </div>
     </Section>
   );
@@ -50,7 +78,7 @@ const Section = styled.div`
   flex-direction: column;
   background-color: white;
   width: 86%;
-  max-width: 420px;
+  max-width: 380px;
   border-radius: 20px;
   padding: 1rem;
   box-sizing: border-box;
@@ -70,30 +98,14 @@ const Section = styled.div`
 
   .question {
     font-size: 1.4rem;
-    font-weight: 500;
+    font-weight: 600;
     text-align: center;
-    color: black;
+    color: #303030;
     padding: 0.5rem 1rem 2rem 1rem;
   }
 
   .answers {
     display: flex;
     flex-direction: column;
-  }
-
-  .answers button {
-    width: 100%;
-    padding: 0.8rem;
-    font-size: 1rem;
-    border-color: white;
-    border-radius: 30px;
-    border-color: gray;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    box-shadow: none;
-    outline: white;
-    margin-bottom: 1.2rem;
-    background-color: transparent;
   }
 `;

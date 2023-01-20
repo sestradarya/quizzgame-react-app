@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 
-export const Results = () => {
+export const Results = (props) => {
   return (
     <Section>
-      <div>Your Result: {"5 / 10"}</div>
+      <div>Your Result: {props.result}</div>
     </Section>
   );
 };
