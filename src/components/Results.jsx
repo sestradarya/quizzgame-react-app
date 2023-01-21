@@ -19,7 +19,7 @@ const Section = styled.div`
 
   div {
     background-color: white;
-    background-image: url('https://media.istockphoto.com/id/905483648/vector/falling-confetti-with-white-background-vector-illustration.jpg?s=612x612&w=0&k=20&c=RdGDi0TimxVwwoPj4ekrYg6HVvfFa9DnBBSHXcCb8mA=');
+    background-image: url("https://media.istockphoto.com/id/905483648/vector/falling-confetti-with-white-background-vector-illustration.jpg?s=612x612&w=0&k=20&c=RdGDi0TimxVwwoPj4ekrYg6HVvfFa9DnBBSHXcCb8mA=");
     background-size: cover;
 
     border-radius: 20px;
