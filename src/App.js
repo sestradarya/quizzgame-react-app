@@ -3,6 +3,7 @@ import { HomePage } from "./pages/HomePage";
 import styled from "styled-components";
 import { useState } from "react";
 import { ResultsPage } from "./pages/ResultsPage";
+import { CategoryPage } from "./pages/CategoryPage";
 import { CounterContext } from "./context/CounterContext";
 
 function App() {
@@ -16,6 +17,9 @@ function App() {
     setgameProgress("started");
     setCount(0)
   }
+  function playingGame(){
+    setgameProgress("in progress")
+  }
   function increaseCount(){
     setCount(prev => prev+1)
   }
@@ -26,8 +30,10 @@ function App() {
       {gameProgress === "not started" ? (
         <HomePage startGame={startGame} />
       ) : gameProgress === "started" ? (
+        <CategoryPage playingGame={playingGame}/>
+      ) : gameProgress === "in progress" ? (
         <GamePage endGame={endGame} />
-      ) : (
+      ): (
         <ResultsPage startGame={startGame} result={count}/>
       )}
     </Container>

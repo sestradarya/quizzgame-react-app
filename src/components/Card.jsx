@@ -9,7 +9,6 @@ export const Card = (props) => {
   useEffect(() => {
     setNumber(0);
     fetchData();
-    console.log("newCard");
   }, []);
 
   useEffect(() => {
@@ -25,10 +24,6 @@ export const Card = (props) => {
     if (data) setNumber((prev) => prev + 1);
   };
 
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
-
   const getQuestions = () => {
     if (data.incorrect_answers) {
       const arr = data.incorrect_answers.map((answer) => {
@@ -39,15 +34,18 @@ export const Card = (props) => {
         value: data.correct_answer,
         isCorrect: true,
       });
-      console.log(arr);
       return arr;
     }
   };
 
   const replaceEntities = (str) => {
     if (str) {
-      return str.replaceAll("&quot;", '"').replaceAll('&#039;', "'")
-      .replaceAll("&ouml;", "ö").replaceAll("&amp;", "&").replaceAll("&eacute;", "É");
+      return str
+        .replaceAll("&quot;", '"')
+        .replaceAll("&#039;", "'")
+        .replaceAll("&ouml;", "ö")
+        .replaceAll("&amp;", "&")
+        .replaceAll("&eacute;", "É");
     }
   };
 
@@ -65,6 +63,7 @@ export const Card = (props) => {
               value={replaceEntities(answer.value)}
               onHandleClick={fetchData}
               isCorrect={answer.isCorrect}
+              key={answer.value}
             />
           );
         })}

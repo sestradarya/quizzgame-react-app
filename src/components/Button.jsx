@@ -19,6 +19,7 @@ const Btn = styled.button`
   font-size: 1.3;
   font-weight: 700;
   letter-spacing: 0.2rem;
+  color: black;
 
   :hover {
     background-color: #b8b8b8;
