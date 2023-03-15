@@ -43,7 +43,7 @@ function App() {
           {gameProgress === "not started" ? (
             <HomePage startGame={startGame} />
           ) : gameProgress === "started" ? (
-            <CategoryPage playingGame={playingGame} />
+            <CategoryPage playingGame={playingGame} exitGame={exitGame}/>
           ) : gameProgress === "in progress" ? (
             <GamePage endGame={endGame} />
           ) : (

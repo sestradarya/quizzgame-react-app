@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Button } from "../components/Button";
 import { CategoryBtn } from "../components/CategoryBtn";
 
 export const CategoryPage = (props) => {
@@ -7,41 +8,52 @@ export const CategoryPage = (props) => {
     <Page>
       <Section>
         <p>Choose Category:</p>
-        <CategoryBtn
-          onHandleClick={props.playingGame}
-          value="Mixed"
-          id=''
-        />
+        <CategoryBtn onHandleClick={props.playingGame} value="Mixed" id="" />
         <CategoryBtn
           onHandleClick={props.playingGame}
           value="Science: Computers"
-          id='18'
+          id="18"
         />
-        <CategoryBtn onHandleClick={props.playingGame} value="Sports" id='21'/>
-        <CategoryBtn onHandleClick={props.playingGame} value="History" id='23'/>
-        <CategoryBtn onHandleClick={props.playingGame} value="Animals" id='27'/>
-        <CategoryBtn onHandleClick={props.playingGame} value="Art" id='25'/>
-        <CategoryBtn onHandleClick={props.playingGame} value="Politics" id='24'/>
+        <CategoryBtn onHandleClick={props.playingGame} value="Sports" id="21" />
+        <CategoryBtn
+          onHandleClick={props.playingGame}
+          value="History"
+          id="23"
+        />
+        <CategoryBtn
+          onHandleClick={props.playingGame}
+          value="Animals"
+          id="27"
+        />
+        <CategoryBtn onHandleClick={props.playingGame} value="Art" id="25" />
+        <CategoryBtn
+          onHandleClick={props.playingGame}
+          value="Politics"
+          id="24"
+        />
         <CategoryBtn
           onHandleClick={props.playingGame}
           value="Entertainment: Books"
-          id='10'
+          id="10"
         />
         <CategoryBtn
           onHandleClick={props.playingGame}
           value="Entertainment: Film"
-          id='11'
+          id="11"
         />
         <CategoryBtn
           onHandleClick={props.playingGame}
           value="Entertainment: Music"
-          id='12'
+          id="12"
         />
         <CategoryBtn
           onHandleClick={props.playingGame}
           value="Entertainment: Television"
-          id='14'
+          id="14"
         />
+        <div className="button">
+          <Button onHandleClick={props.exitGame} caption="Exit game" />
+        </div>
       </Section>
     </Page>
   );
@@ -55,7 +67,7 @@ const Page = styled.div`
 `;
 
 const Section = styled.div`
-  padding: .3rem;
+  padding: 0.3rem;
   display: flex;
   flex-direction: column;
   background-color: white;
@@ -83,5 +95,14 @@ const Section = styled.div`
     font-size: 1.5rem;
     text-align: center;
     color: #191919;
+  }
+
+  .button{
+    display: flex;
+    justify-content: center;
+  }
+
+  .button button{
+    margin: 1rem;
   }
 `;
