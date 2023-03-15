@@ -32,9 +32,7 @@ function App() {
     setCategory(id);
   }
 
-  // useEffect(() => {
-  //   console.log(category)
-  // }, [category])
+
 
   return (
     <CategoryContext.Provider value={{category, changeCategory}}>
