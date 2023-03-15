@@ -21,7 +21,9 @@ function App() {
   }
   function playingGame() {
     setgameProgress("in progress");
-    
+  }
+  function exitGame(){
+    setgameProgress('not started')
   }
   function increaseCount() {
     setCount((prev) => prev + 1);
@@ -45,7 +47,7 @@ function App() {
           ) : gameProgress === "in progress" ? (
             <GamePage endGame={endGame} />
           ) : (
-            <ResultsPage startGame={startGame} result={count} />
+            <ResultsPage startGame={startGame} playingGame={playingGame} exitGame={exitGame} result={count} />
           )}
         </Container>
       </CounterContext.Provider>
