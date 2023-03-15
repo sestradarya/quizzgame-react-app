@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { CategoryContext } from "../context/CategoryContext";
 import { AnswerBtn } from "./AnswerBtn";
 
 export const Card = (props) => {
@@ -18,7 +19,7 @@ export const Card = (props) => {
   }, [number]);
 
   const fetchData = async () => {
-    const result = await fetch("https://opentdb.com/api.php?amount=1");
+    const result = await fetch(`https://opentdb.com/api.php?amount=1&category=${props.category}`);
     const data = await result.json();
     setData(data.results[0]);
     if (data) setNumber((prev) => prev + 1);
@@ -50,25 +51,29 @@ export const Card = (props) => {
   };
 
   return (
-    <Section>
-      <div className="head-panel">
-        <div className="question-number">{number}/10</div>
-      </div>
-      <div className="category">{data.category}</div>
-      <div className="question">{replaceEntities(data.question)}</div>
-      <div className="answers">
-        {getQuestions()?.map((answer) => {
-          return (
-            <AnswerBtn
-              value={replaceEntities(answer.value)}
-              onHandleClick={fetchData}
-              isCorrect={answer.isCorrect}
-              key={answer.value}
-            />
-          );
-        })}
-      </div>
-    </Section>
+    <CategoryContext.Consumer>
+      {({ category }) => (
+        <Section>
+          <div className="head-panel">
+            <div className="question-number">{number}/10</div>
+          </div>
+          <div className="category">{data.category}</div>
+          <div className="question">{replaceEntities(data.question)}</div>
+          <div className="answers">
+            {getQuestions()?.map((answer) => {
+              return (
+                <AnswerBtn
+                  value={replaceEntities(answer.value)}
+                  onHandleClick={fetchData}
+                  isCorrect={answer.isCorrect}
+                  key={answer.value}
+                />
+              );
+            })}
+          </div>
+        </Section>
+      )}
+    </CategoryContext.Consumer>
   );
 };
 
