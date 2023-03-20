@@ -50,6 +50,10 @@ export const Card = (props) => {
     }
   };
 
+  function disabling(){
+
+  }
+
   return (
     <CategoryContext.Consumer>
       {({ category }) => (
@@ -59,14 +63,17 @@ export const Card = (props) => {
           </div>
           <div className="category">{data.category}</div>
           <div className="question">{replaceEntities(data.question)}</div>
-          <div className="answers">
+          <div className="answers"
+            
+          >
             {getQuestions()?.map((answer) => {
               return (
                 <AnswerBtn
                   value={replaceEntities(answer.value)}
-                  onHandleClick={fetchData}
+                  onHandleClick={() => {fetchData(); }}
                   isCorrect={answer.isCorrect}
                   key={answer.value}
+                  
                 />
               );
             })}

@@ -1,3 +1,4 @@
+import { isDisabled } from "@testing-library/user-event/dist/utils";
 import React, { useState } from "react";
 import styled from "styled-components";
 import { CounterContext } from "../context/CounterContext";
@@ -22,11 +23,15 @@ export const AnswerBtn = (props) => {
     <CounterContext.Consumer>
       {({ count, increaseCount }) => (
         <Button
-          onClick={() => {
+          onClick={(event) => {
             if(props.isCorrect){
                 increaseCount()
             }
-            selectAnswer()}}
+            selectAnswer()
+            
+          }
+          }
+          
           style={{ backgroundColor: backgroundColor }}
         >
           {props.value}
@@ -37,6 +42,7 @@ export const AnswerBtn = (props) => {
 };
 
 const Button = styled.button`
+
   width: 85%;
   padding: 0.8rem;
   font-size: 1rem;
