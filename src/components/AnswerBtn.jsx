@@ -27,7 +27,7 @@ export const AnswerBtn = (props) => {
             if(props.isCorrect){
                 setTimeout(() => {
                   increaseCount()
-                }, 1000); 
+                }, 2000); 
             }
             selectAnswer()
             
