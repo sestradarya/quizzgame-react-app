@@ -46,7 +46,8 @@ export const Card = (props) => {
         .replaceAll("&#039;", "'")
         .replaceAll("&ouml;", "ö")
         .replaceAll("&amp;", "&")
-        .replaceAll("&eacute;", "É");
+        .replaceAll("&eacute;", "É")
+        .replaceAll("&divide;", '/')
     }
   };
 

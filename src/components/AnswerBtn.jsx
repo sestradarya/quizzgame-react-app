@@ -25,7 +25,9 @@ export const AnswerBtn = (props) => {
         <Button
           onClick={(event) => {
             if(props.isCorrect){
-                increaseCount()
+                setTimeout(() => {
+                  increaseCount()
+                }, 1000); 
             }
             selectAnswer()
             

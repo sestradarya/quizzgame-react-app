@@ -20,6 +20,7 @@ function App() {
     setCount(0);
   }
   function playingGame() {
+    setCount(0)
     setgameProgress("in progress");
   }
   function exitGame(){
